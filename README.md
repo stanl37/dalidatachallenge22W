@@ -1,3 +1,4 @@
+
 ## DALI Data Team Data Challenge
 Stanley Gao '24, March 2022
 
@@ -27,3 +28,11 @@ The regression is below.
 
 
 ### Part 2: Free-Form Model Training
+
+For this part of the data challenge I ran a multivariate linear regression on the WIID dataset using STATA's `areg`, trying to predict Gini coefficients based on inputs such as income group, EU status, OECD status, exchange rates to the US Dollar, GDP PPP Per Capita, and Population. I controlled for year effects and absorbed country fixed effects. While many of my controls were rejected by STATA for collinearity, the regression I ran resulted in an R-squared of 0.7238. I cannot provide a visualization of my multivariate regression because there is no way to represent it in 3D space given the number of controls I've included. However, an `outreg2` output is shown below.
+
+![outreg2](https://i.imgur.com/MOoWqRB.png)
+
+This model attempts to predict a country's GINI coefficient, given its country's population, GDP, and exchange rate to the US Dollar. The coefficients of all three of our main independent variables are statistically significant. The coefficient to `exchangerate` tells us that for an additional increase in the ratio of foreign currency to US dollars (for example, 6 Chinese yuan to 1 USD becoming 7 Chinese yuan to 1 USD), the Gini coefficient is estimated to rise by 0.000227. And similarly, for every 2011 US Dollar increase in GDP PPP Per Capita, the Gini coefficient is estimated to rise by 0.000290. And finally, for every additional person added to a country's population, the Gini coefficient is estimated to rise by an incredibly small number.
+
+All three coefficients are positive, which indicate that increasing exchange rates (having a currency that simply expresses value in greater numbers), GDP PPP PC, and population all increase the Gini coefficient – they all increase income inequality. While this association is interesting, we must make sure to avoid assuming causality. There are many third factors that may be impacting this data, and as such we have not fulfilled one of our crucial validity assumptions.
